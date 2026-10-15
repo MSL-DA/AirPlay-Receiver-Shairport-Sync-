@@ -1,19 +1,18 @@
 ---
-name: "Hassfest"
+name: Hassfest
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 6 * * *"
   pull_request:
     branches:
-      - "main"
+      - main
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
 
-# None of these jobs write anything back to the repository: they check out,
-# install and run. Declaring the token read-only means a compromised action in
-# the chain cannot push, tag or open anything either. release.yml has said this
-# since it was written; the others inherited whatever the repository default
-# happened to be.
+# The job only checks out and validates; it never writes to the repository.
 permissions:
   contents: read
 
@@ -23,17 +22,12 @@ concurrency:
 
 jobs:
   hassfest:
-    name: "Hassfest Validation"
-    runs-on: "ubuntu-latest"
+    name: Hassfest Validation
+    runs-on: ubuntu-latest
     steps:
-      - name: "Checkout the repository"
-        uses: "actions/checkout@v7"
+      - name: Check out the repository
+        uses: actions/checkout@v7
 
-      # Unpinned on purpose. `@master` is what Home Assistant's own README for
-      # this action tells you to use, and the repository publishes no release
-      # tags to pin to instead. Dependabot cannot follow a branch, so nothing
-      # will say when it moves — that is the price of using it as documented,
-      # and it is a smaller price than a version number nobody can check.
-      # hacs.yml carries the same note for the same reason.
-      - name: "Run hassfest validation"
-        uses: "home-assistant/actions/hassfest@master"
+      # Home Assistant documents `@master` as the reference for this action.
+      - name: Run hassfest validation
+        uses: home-assistant/actions/hassfest@master
