@@ -12,11 +12,7 @@ on:
     - cron: "0 6 * * *"
   workflow_dispatch:
 
-# None of these jobs write anything back to the repository: they check out,
-# install and run. Declaring the token read-only means a compromised action in
-# the chain cannot push, tag or open anything either. release.yml has said this
-# since it was written; the others inherited whatever the repository default
-# happened to be.
+# The job only checks out and validates; it never writes to the repository.
 permissions:
   contents: read
 
@@ -32,11 +28,7 @@ jobs:
       - name: Check out code from GitHub
         uses: actions/checkout@v7
 
-      # Unpinned on purpose. HACS recommends `@main` itself, and while its
-      # documentation says you may pin and let Dependabot follow, the version to
-      # pin to could not be looked up — and a guessed version number is exactly
-      # the pattern this repository has been burned by. hassfest.yml carries the
-      # same note.
+      # HACS documents `@main` as the recommended reference for this action.
       - name: Run HACS validation
         uses: hacs/action@main
         with:
