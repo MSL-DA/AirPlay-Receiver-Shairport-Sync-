@@ -1,0 +1,47 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Tilføj Shairport Sync",
+        "description": "Angiv det MQTT-basistopic, der er sat som `mqtt.topic` i shairport-sync.conf.",
+        "data": {
+          "name": "Navn",
+          "topic": "MQTT-basistopic"
+        },
+        "data_description": {
+          "name": "Navn på medieafspilleren og enheden i Home Assistant.",
+          "topic": "F.eks. `shairport` eller `/HiFi`, præcis som Shairport Sync publicerer det (en indledende skråstreg har betydning). Uden afsluttende skråstreg og uden wildcards."
+        }
+      },
+      "discovery_confirm": {
+        "title": "Shairport Sync fundet",
+        "description": "Shairport Sync-instansen **{name}** blev fundet på MQTT-basistopic `{topic}`. Vil du tilføje den?",
+        "data": {
+          "name": "Navn"
+        }
+      },
+      "reconfigure": {
+        "title": "Omkonfigurer Shairport Sync",
+        "data": {
+          "topic": "MQTT-basistopic"
+        },
+        "data_description": {
+          "topic": "Det MQTT-basistopic, der er sat som `mqtt.topic` i shairport-sync.conf."
+        }
+      }
+    },
+    "error": {
+      "invalid_topic": "Ugyldigt MQTT-basistopic. Wildcards (`+`, `#`) er ikke tilladt."
+    },
+    "abort": {
+      "already_configured": "Enheden er allerede konfigureret",
+      "reconfigure_successful": "Omkonfigurationen lykkedes",
+      "invalid_discovery_info": "Ugyldige discovery-oplysninger modtaget.",
+      "not_shairport_sync": "Den fundne enhed er ikke en Shairport Sync-instans."
+    }
+  },
+  "exceptions": {
+    "mqtt_not_available": "MQTT-integrationen er ikke tilgængelig."
+  }
+}
