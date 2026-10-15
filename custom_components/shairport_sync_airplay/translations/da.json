@@ -42,6 +42,8 @@
     }
   },
   "exceptions": {
-    "mqtt_not_available": "MQTT-integrationen er ikke tilgængelig."
+    "mqtt_not_available": {
+      "message": "MQTT-integrationen er ikke tilgængelig."
+    }
   }
 }
