@@ -42,6 +42,8 @@
     }
   },
   "exceptions": {
-    "mqtt_not_available": "The MQTT integration is not available."
+    "mqtt_not_available": {
+      "message": "The MQTT integration is not available."
+    }
   }
 }
