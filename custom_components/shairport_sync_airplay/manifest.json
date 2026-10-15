@@ -12,5 +12,5 @@
   "issue_tracker": "https://github.com/MSL-DA/shairport_sync_airplay/issues",
   "mqtt": ["homeassistant/binary_sensor/+/active/config"],
   "requirements": [],
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
